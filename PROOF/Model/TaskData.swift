@@ -1,0 +1,50 @@
+//
+//  TaskData.swift
+//  PROOF
+//
+//  Created by Adrian Mazek on 15/03/2026.
+//
+
+import Foundation
+import SwiftUI
+
+struct TaskData: Codable, Identifiable {
+    var id: String = UUID().uuidString
+    var title: String
+    var description: String?
+    var isCompleted: Bool = false
+    var startTime: Date = Date()
+    var endTime: Date = Date().addingTimeInterval(2 * 60 * 60)
+    let category: TaskCategory
+    
+    static let sampleTaskData : [TaskData] = [
+        TaskData(title: "Mockup Task 1", description: "Go for a run", category: .freeTime),
+        TaskData(title: "Mockup Task 2", description: "Go for a walk", category: .chores),
+        TaskData(title: "Mockup Task 3", description: "Go swimmming", category: .other),
+        TaskData(title: "Mockup Task 4", description: "Go for a hike", category: .university),
+        TaskData(title: "Mockup Task 1", description: "Go for a run", category: .freeTime),
+        TaskData(title: "Mockup Task 2", description: "Go for a walk", category: .chores),
+        TaskData(title: "Mockup Task 3", description: "Go swimmming", category: .other),
+        TaskData(title: "Mockup Task 4", description: "Go for a hike", category: .university)
+        ]
+    }
+
+enum TaskCategory: String, Codable, CaseIterable, Identifiable {
+    case freeTime = "Free Time"
+    case university = "University"
+    case chores = "Chores"
+    case other = "Other"
+    
+    var id: String { self.rawValue }
+    
+    var color: Color {
+        switch self {
+        case .freeTime: return .blue
+        case .university: return .green
+        case .chores: return .orange
+        case .other: return .gray
+        }
+    }
+}
+
+
