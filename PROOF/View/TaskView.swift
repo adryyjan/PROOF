@@ -10,54 +10,161 @@ import SwiftUI
 struct TaskView: View {
     
     @State private var vm = TaskViewModel()
+
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-               HStack {
-                    Circle()
-                       .frame(width: 100)
-                   
-                   Spacer()
-                   
-                   Text("7/10")
-                       .font(.title)
-                   
-                   Image(systemName: "checkmark")
-                }
-            }
-            .padding(.horizontal, 20)
+        ZStack(alignment: .bottomTrailing) {
+            VStack{
+                info
                 
+                Divider()
+                
+                HStack {
+                    Text("To do")
+                        .font(Font.largeTitle.bold())
+                        .foregroundStyle(Color.dogTextSecondary)
+                    Spacer()
+                    Text("8 tasks")
+                        .foregroundStyle(Color.dogTextSecondary)
+                }
+                .padding(.horizontal, 20)
+                
+                taskList
+                
+                Divider()
+                
+                doneList
+                    
+            }
+            
+            plusButton
+           
+        }
+
+    }
+    
+        
+    
+
+}
+
+
+extension TaskView {
+    
+    
+    private var info: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Today")
+                        .font(Font.largeTitle.bold())
+                        .foregroundStyle(Color.dogTextPrimary)
+                    
+                    
+                    Text("Pon, 30 maca")
+                        .font(Font.title3)
+                        .foregroundStyle(Color.dogTextSecondary)
+
+                }
+                
+                Spacer()
+                
+                Circle()
+                    .frame(width: 50, height: 50)
+                
+            }
             
             HStack {
-                Button(action: { vm.selectedCategory = nil }) {
-                    Text("All")
-                        .font(.subheadline)
-                        .padding(6)
-                        .background((vm.selectedCategory == nil) ? Color.blue.opacity(0.2) : Color.gray.opacity(0.2))
-                        .foregroundStyle((vm.selectedCategory == nil) ? .blue : .primary)
-                        .cornerRadius(6)
-                }
-                ForEach(TaskCategory.allCases, id: \.self) { category in
-                    Button(action: { vm.selectedCategory = category }) {
-                        Text(String(describing: category.rawValue))
-                            .font(.subheadline)
-                            .padding(6)
-                            .background((vm.selectedCategory == category) ? Color.blue.opacity(0.2) : Color.gray.opacity(0.2))
-                            .foregroundStyle((vm.selectedCategory == category) ? .blue : .primary)
-                            .cornerRadius(6)
-                    }
-                }
+                ProgressCirclesView(circleColor: .choreesAccent,contentColor: .choreesText, progress1: $vm.progressTestCounter4, streak: $vm.choresStreak)
+                Spacer()
+                ProgressCirclesView(circleColor: .uniAccent,contentColor: .uniText, progress1: $vm.progressTestCounter3, streak: $vm.uniStreak)
+                Spacer()
+                ProgressCirclesView(circleColor: .otherAccent,contentColor: .otherText, progress1: $vm.progressTestCounter2, streak: $vm.otherStreak)
+                Spacer()
+                ProgressCirclesView(circleColor: .pastimeAccent,contentColor: .pastimeText, progress1: $vm.progressTestCounter1, streak: $vm.pastimeStreak)
             }
-            ScrollView{
-                LazyVStack {
-                    ForEach(vm.filteredTasks) { task in
-                        SingleTaskView(task: task)
-                    }
-                }
-            }
+            .padding(.vertical, 10)
+
         }
-        
+    
+        .padding(.horizontal, 20)
+    }
+    
+
+    private var taskList: some View {
+        Group {
+            List {
+                ForEach(vm.filteredTasks) { task in
+                    SingleTaskView(task: task)
+
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                }
+                .onDelete(perform: vm.deleteTask)
+                .contextMenu {
+                    Button("Edit", systemImage: "pencil") {
+                        print("Edytuj")
+                    }
+                    .background(.ultraThinMaterial)
+
+                    Button("Delete", systemImage: "trash", role: .destructive) {
+                        print("Usuń")
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
+        }
+    }
+    
+    private var doneList: some View {
+        Group {
+            List {
+                ForEach(vm.filteredTasks) { task in
+                    SingleTaskView(task: task)
+
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                }
+                .onDelete(perform: vm.deleteTask)
+                .contextMenu {
+                    Button("Edit", systemImage: "pencil") {
+                        print("Edytuj")
+                    }
+                    .background(.ultraThinMaterial)
+
+                    Button("Delete", systemImage: "trash", role: .destructive) {
+                        print("Usuń")
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
+
+        }
+        .foregroundStyle(Color.secondary)
+        .strikethrough()
+    }
+    
+    private var plusButton: some View {
+        Button {
+            vm.addProgress()
+        } label: {
+            Image(systemName: "plus")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(Color.dogPrimary.opacity(0.95))
+                .background(.ultraThinMaterial)
+                .clipShape(Circle())
+                .shadow(radius: 8)
+        }
+        .padding(.trailing, 20)
+        .padding(.bottom, 10)
     }
 }
 
