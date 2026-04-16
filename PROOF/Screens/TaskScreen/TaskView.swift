@@ -14,7 +14,8 @@ struct TaskView: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            VStack{
+            Color.dogBackground.ignoresSafeArea()
+            VStack(alignment: .center){
                 info
                 
                 Divider()
@@ -37,7 +38,9 @@ struct TaskView: View {
                     
             }
             
-            plusButton
+            .overlay(alignment: .bottomTrailing) {
+                FABView()
+            }
            
         }
 
@@ -150,22 +153,6 @@ extension TaskView {
         .strikethrough()
     }
     
-    private var plusButton: some View {
-        Button {
-            vm.addProgress()
-        } label: {
-            Image(systemName: "plus")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(.white)
-                .frame(width: 56, height: 56)
-                .background(Color.dogPrimary.opacity(0.95))
-                .background(.ultraThinMaterial)
-                .clipShape(Circle())
-                .shadow(radius: 8)
-        }
-        .padding(.trailing, 20)
-        .padding(.bottom, 10)
-    }
 }
 
 #Preview {

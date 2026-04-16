@@ -9,30 +9,26 @@ import SwiftUI
 
 struct SingleTaskView: View {
     
-    var task: TaskData
-    var category: String?
-    
+    @State var task: TaskData
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
+       
+            HStack() {
+                Circle()
+                    .stroke(task.category.accentColor, lineWidth: 4)
+                    .frame(width: 15)
+                    
                 Text(task.title)
-                    .font(.largeTitle)
+                    .font(.title2)
+                    .lineLimit(1)
+                    
+                    Spacer()
                 
-                if let description = task.description {
-                    Text(description)
-                        .font(.body)
-                        .lineLimit(nil)
+                    CategoryView(task: task)
+
                 }
-                
-            }
-        }
-        
-        .padding(20)
+
+            .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, alignment: .init(horizontal: .leading, vertical: .top))
-        .background(task.category.color)
-        .cornerRadius(20)
-        .shadow(radius: 10)
-        .padding(.horizontal, 20)
         
     }
         

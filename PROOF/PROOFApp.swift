@@ -6,12 +6,36 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
-struct PROOFApp: App {
+struct YourApp: App {
+  // register app delegate for Firebase setup
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     var body: some Scene {
         WindowGroup {
-            TaskView()
+            TabView {
+                Tab("Chores", systemImage: "list.bullet.rectangle"){
+                    TaskView()
+                }
+                
+                Tab("Feed", systemImage: "rectangle.split.2x2.fill") {
+                    FeedView()
+                }
+                
+            }
+            .tint(Color.dogPrimary)
+            
+            
         }
     }
 }
