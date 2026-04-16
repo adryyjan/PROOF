@@ -10,8 +10,6 @@ import SwiftUI
 struct SingleTaskView: View {
     
     @State var task: TaskData
-//    @State var category: String
-    
     var body: some View {
        
             HStack() {
@@ -25,13 +23,7 @@ struct SingleTaskView: View {
                     
                     Spacer()
                 
-                    Text(task.category.rawValue)
-                        .padding(5)
-                        .font(.subheadline)
-                        .foregroundStyle(Color(task.category.textColor))
-                        .background(task.category.backgroundColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .shadow(radius: 2)
+                    CategoryView(task: task)
 
                 }
 

@@ -28,7 +28,12 @@ struct YourApp: App {
                     TaskView()
                 }
                 
+                Tab("Feed", systemImage: "rectangle.split.2x2.fill") {
+                    FeedView()
+                }
+                
             }
+            .tint(Color.dogPrimary)
             
             
         }

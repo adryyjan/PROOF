@@ -16,16 +16,25 @@ struct TaskData: Codable, Identifiable {
     var startTime: Date = Date()
     var endTime: Date = Date().addingTimeInterval(2 * 60 * 60)
     let category: TaskCategory
+    var isPublic: Bool = true
     
     static let sampleTaskData : [TaskData] = [
         TaskData(title: "Mockup Task 1", description: "Go for a run", category: .pasTime),
         TaskData(title: "Mockup Task 2", description: "Go for a walk", category: .chores),
         TaskData(title: "Mockup Task 3", description: "Go swimmming", category: .other),
         TaskData(title: "Mockup Task 4", description: "Go for a hike", category: .university),
+        TaskData(title: "Mockup Task 5", description: "Go for a run", category: .pasTime),
+        TaskData(title: "Mockup Task 6", description: "Go for a walk", category: .chores),
+        TaskData(title: "Mockup Task 7", description: "Go swimmming", category: .other),
+        TaskData(title: "Mockup Task 8", description: "Go for a hike", category: .university),
         TaskData(title: "Mockup Task 1", description: "Go for a run", category: .pasTime),
         TaskData(title: "Mockup Task 2", description: "Go for a walk", category: .chores),
         TaskData(title: "Mockup Task 3", description: "Go swimmming", category: .other),
-        TaskData(title: "Mockup Task 4", description: "Go for a hike", category: .university)
+        TaskData(title: "Mockup Task 4", description: "Go for a hike", category: .university),
+        TaskData(title: "Mockup Task 5", description: "Go for a run", category: .pasTime),
+        TaskData(title: "Mockup Task 6", description: "Go for a walk", category: .chores),
+        TaskData(title: "Mockup Task 7", description: "Go swimmming", category: .other),
+        TaskData(title: "Mockup Task 8", description: "Go for a hike", category: .university)
         ]
     }
 
