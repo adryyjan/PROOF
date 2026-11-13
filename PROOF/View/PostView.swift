@@ -16,9 +16,6 @@ struct PostView: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(task.category.accentColor.opacity(0.7))
                 .frame(height: 250)
-            
-            
-            
             HStack{
                 VStack(alignment: .leading){
                     Spacer()

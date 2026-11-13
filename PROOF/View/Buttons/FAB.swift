@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FABView: View {
+struct FAB: View {
     
     
     var body: some View {

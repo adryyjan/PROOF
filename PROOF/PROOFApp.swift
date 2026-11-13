@@ -20,22 +20,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct YourApp: App {
   // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State var isUserLoggedIn: Bool = false
 
     var body: some Scene {
         WindowGroup {
-            TabView {
-                Tab("Chores", systemImage: "list.bullet.rectangle"){
-                    TaskView()
+            if isUserLoggedIn{
+                TabView {
+                    Tab("Chores", systemImage: "list.bullet.rectangle"){
+                        TaskView()
+//                        RegisterScreenContainer()
+                    }
+                    
+                    Tab("Feed", systemImage: "rectangle.split.2x2.fill") {
+                        FeedView()
+                    }
                 }
-                
-                Tab("Feed", systemImage: "rectangle.split.2x2.fill") {
-                    FeedView()
-                }
-                
+                .tint(Color.dogPrimary)
+            }else {
+                WelcomeScreenView(isPresented: $isUserLoggedIn)
+//                RegisterScreenContainer(isPresented: $isUserLoggedIn)
             }
-            .tint(Color.dogPrimary)
-            
-            
         }
     }
 }

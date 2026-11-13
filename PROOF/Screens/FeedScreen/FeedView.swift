@@ -84,7 +84,7 @@ struct FeedView: View {
             
         }
         .overlay(alignment: .bottomTrailing) {
-            FABView()
+            FAB()
         }
     }
     
