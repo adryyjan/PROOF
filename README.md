@@ -37,7 +37,7 @@ This project is a collaborative effort between two engineers, balancing technica
 
 > **Lead iOS Developer (Me)** > Responsible for the end-to-end technical implementation in Swift, database schema design, and cloud integration. Leveraging my background in Geoinformatics and experience with Dart/Flutter to build a robust native iOS architecture.
 
-> **PM & UI/UX Lead (Antek)** > A business-oriented engineer focused on user journey, UI/UX consistency, and MVP management. He ensures we maintain a *"Done is better than perfect"* philosophy, focusing on shipping a high-quality v1.0.
+> **PM & UI/UX Lead (Me && Claude )** > A business-oriented engineer focused on user journey, UI/UX consistency, and MVP management. He ensures we maintain a *"Done is better than perfect"* philosophy, focusing on shipping a high-quality v1.0. While I don't have any experience in UI/UX the Claude is the main one. He also validate my architecture and system design choices ;)
 
 ---
 
