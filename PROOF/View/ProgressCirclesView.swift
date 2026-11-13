@@ -44,7 +44,7 @@ struct SingleProgressCirsle: View {
                     circleColor,
                     style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round)
                 )
-                .rotationEffect(.degrees(-90)) // start na górze
+                .rotationEffect(.degrees(-90))
                 .frame(width: radius, height: radius)
                 .animation(.easeInOut(duration: 0.6), value: progress)
         }

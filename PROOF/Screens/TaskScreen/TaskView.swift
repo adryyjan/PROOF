@@ -34,26 +34,20 @@ struct TaskView: View {
                 
                 Divider()
                 
-                doneList
+//                doneList
                     
             }
             
             .overlay(alignment: .bottomTrailing) {
-                FABView()
+                FAB()
             }
-           
         }
-
     }
     
-        
-    
-
 }
 
 
 extension TaskView {
-    
     
     private var info: some View {
         VStack(alignment: .leading) {
@@ -122,36 +116,36 @@ extension TaskView {
         }
     }
     
-    private var doneList: some View {
-        Group {
-            List {
-                ForEach(vm.filteredTasks) { task in
-                    SingleTaskView(task: task)
-
-                        .listRowInsets(EdgeInsets())
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
-                }
-                .onDelete(perform: vm.deleteTask)
-                .contextMenu {
-                    Button("Edit", systemImage: "pencil") {
-                        print("Edytuj")
-                    }
-                    .background(.ultraThinMaterial)
-
-                    Button("Delete", systemImage: "trash", role: .destructive) {
-                        print("Usuń")
-                    }
-                }
-            }
-            .listStyle(.plain)
-            .scrollContentBackground(.hidden)
-            .background(Color.clear)
-
-        }
-        .foregroundStyle(Color.secondary)
-        .strikethrough()
-    }
+//    private var doneList: some View {
+//        Group {
+//            List {
+//                ForEach(vm.filteredTasks) { task in
+//                    SingleTaskView(task: task)
+//
+//                        .listRowInsets(EdgeInsets())
+//                        .listRowSeparator(.hidden)
+//                        .listRowBackground(Color.clear)
+//                }
+//                .onDelete(perform: vm.deleteTask)
+//                .contextMenu {
+//                    Button("Edit", systemImage: "pencil") {
+//                        print("Edytuj")
+//                    }
+//                    .background(.ultraThinMaterial)
+//
+//                    Button("Delete", systemImage: "trash", role: .destructive) {
+//                        print("Usuń")
+//                    }
+//                }
+//            }
+//            .listStyle(.plain)
+//            .scrollContentBackground(.hidden)
+//            .background(Color.clear)
+//
+//        }
+//        .foregroundStyle(Color.secondary)
+//        .strikethrough()
+//    }
     
 }
 
